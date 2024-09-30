@@ -1,0 +1,35 @@
+
+<odoo>
+    <template id="stock_request_order_template">
+        <t t-call="web.html_container">
+            <t t-foreach="doc_ids" t-as="o">
+                <div class="page">
+                    <h2>Stock Request Order</h2>
+                    <p><strong>Name:</strong> <span t-field="o.name"/></p>
+                    <p><strong>Warehouse:</strong> <span t-field="o.warehouse_id.name"/></p>
+                    <p><strong>Requested By:</strong> <span t-field="o.requested_by.name"/></p>
+                    <p><strong>Date:</strong> <span t-field="o.create_date"/></p>
+                    <p><strong>State:</strong> <span t-field="o.state"/></p>
+
+                    <h3>Requested Products:</h3>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit of Measure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.request_line_ids" t-as="line">
+                                <td><span t-field="line.product_id.name"/></td>
+                                <td><span t-field="line.product_uom_qty"/></td>
+                                <td><span t-field="line.product_uom_id.name"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
